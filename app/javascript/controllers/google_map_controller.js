@@ -16,7 +16,7 @@ export default class extends Controller {
       this.position = { lat: 0, lng: 0 }
     })
 
-    this.loader.load().then(async () => {
+    await this.loader.load().then(async () => {
       const { Map } = await google.maps.importLibrary('maps');
       const { PinElement, AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
@@ -39,5 +39,45 @@ export default class extends Controller {
         content: currentPositionPin.element,
       });
     })
+
+    this.loader.load().then(async () => {
+      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+      const { places } = await this.fetchNearPlaces();
+      this.places = await places;
+      for (const place of this.places) {
+        const advancedMarkerElement = new AdvancedMarkerElement({
+          map: this.map,
+          position: { lat: place.location.latitude, lng: place.location.longitude },
+          title: place.displayName.text,
+        });
+      }
+    });
+  }
+
+  fetchNearPlaces() {
+    const url = 'https://places.googleapis.com/v1/places:searchNearby';
+    const headers = {
+      'Content-Type': 'application/json',
+      'X-Goog-Api-Key': this.apiKeyValue,
+      'X-Goog-FieldMask': 'places.id,places.location,places.displayName',
+    }
+    const method = 'POST';
+    const data =
+        {
+          "includedTypes": ['restaurant'],
+          "locationRestriction": {
+            "circle": {
+              "center": {
+                "latitude": this.position.lat,
+                "longitude": this.position.lng,
+              },
+              "radius": 1000.0
+            }
+          }
+        };
+    const body = JSON.stringify(data);
+    const options = { headers, method, body };
+    return fetch(url, options)
+            .then(response => response.json());
   }
 }
