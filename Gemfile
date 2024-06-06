@@ -8,8 +8,10 @@ gem "jsbundling-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "cssbundling-rails"
-gem "redis", ">= 4.0.1"
+gem "redis"
 gem "bootsnap", require: false
+
+gem 'haml-rails'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
