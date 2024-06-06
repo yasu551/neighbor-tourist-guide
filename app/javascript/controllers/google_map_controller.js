@@ -3,7 +3,7 @@ import { Loader } from "@googlemaps/js-api-loader";
 
 // Connects to data-controller="google-map"
 export default class extends Controller {
-  static values = { apiKey: String }
+  static values = { apiKey: String, mapId: String }
 
   initialize() {
     this.loader = new Loader({ apiKey: this.apiKeyValue, version: "weekly" })
@@ -18,10 +18,19 @@ export default class extends Controller {
   connect() {
     this.loader.load().then(async () => {
       const { Map } = await google.maps.importLibrary('maps');
-      new Map(this.element, {
+      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+      this.map = new Map(this.element, {
         center: this.position,
         zoom: 8,
+        mapId: this.mapIdValue
       })
+
+      const marker = new AdvancedMarkerElement({
+        map: this.map,
+        position: this.position,
+        title: "CurrentPosition",
+      });
     })
   }
 }
