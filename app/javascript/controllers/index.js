@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
+import ChatCompletionController from "./chat_completion_controller"
+application.register("chat-completion", ChatCompletionController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)

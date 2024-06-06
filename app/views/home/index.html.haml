@@ -1,0 +1,7 @@
+%h1 Home#index
+%p Find me in app/views/home/index.html.haml
+
+%div{ data: { controller: 'chat-completion', 'chat-completion-api-key-value': Rails.application.credentials.openai.api_key } }
+  %p{ data: { 'chat-completion-target': 'inputText' } } 餃子王 道頓堀本店
+  %button.btn.btn-block{ type: :button, data: { action: 'chat-completion#replaceDescription'} } 観光地の説明を生成する
+  %p{ data: { 'chat-completion-target': 'outputText' } } ここに観光地の説明が入ります。
