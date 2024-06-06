@@ -18,7 +18,7 @@ export default class extends Controller {
   connect() {
     this.loader.load().then(async () => {
       const { Map } = await google.maps.importLibrary('maps');
-      const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+      const { PinElement, AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
       this.map = new Map(this.element, {
         center: this.position,
@@ -26,10 +26,17 @@ export default class extends Controller {
         mapId: this.mapIdValue
       })
 
+      const currentPositionPin = new PinElement({
+        background: '#00008B',
+        glyphColor: '#87CEEB',
+        borderColor: '#87CEEB',
+      });
+
       const marker = new AdvancedMarkerElement({
         map: this.map,
         position: this.position,
         title: "CurrentPosition",
+        content: currentPositionPin.element,
       });
     })
   }
