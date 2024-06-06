@@ -40,11 +40,10 @@ export default class extends Controller {
       });
     })
 
-    this.loader.load().then(async () => {
+    await this.loader.load().then(async () => {
       const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
       const { places } = await this.fetchNearPlaces();
-      this.places = await places;
-      for (const place of this.places) {
+      for (const place of places) {
         const advancedMarkerElement = new AdvancedMarkerElement({
           map: this.map,
           position: { lat: place.location.latitude, lng: place.location.longitude },
