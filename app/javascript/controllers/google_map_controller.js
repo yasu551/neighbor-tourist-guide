@@ -7,13 +7,19 @@ export default class extends Controller {
 
   initialize() {
     this.loader = new Loader({ apiKey: this.apiKeyValue, version: "weekly" })
+
+    navigator.geolocation.getCurrentPosition((geolocationPosition) => {
+      this.position = { lat: geolocationPosition.coords.latitude, lng: geolocationPosition.coords.longitude }
+    }, () => {
+      this.position = { lat: 0, lng: 0 }
+    })
   }
 
   connect() {
     this.loader.load().then(async () => {
       const { Map } = await google.maps.importLibrary('maps');
       new Map(this.element, {
-        center: { lat: 5, lng: 80 },
+        center: this.position,
         zoom: 8,
       })
     })
