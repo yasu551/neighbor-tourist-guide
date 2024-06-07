@@ -20,4 +20,10 @@ class User < ApplicationRecord
       }
     end
   end
+
+  def x_share_url
+    url = Rails.application.routes.url_helpers.user_visited_places_url(id)
+    text = places.map { _1.name }.join("、") + "に行きました。"
+    "https://x.com/share?url=#{url}&text=#{text}"
+  end
 end

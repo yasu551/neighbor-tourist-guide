@@ -73,4 +73,10 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.good_job.execution_mode = :inline
+
+  Rails.application.routes.default_url_options = {
+    protocol: 'http',
+    host: 'localhost',
+    port: 3000,
+  }
 end

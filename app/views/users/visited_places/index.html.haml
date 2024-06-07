@@ -11,3 +11,11 @@
           .avatar
             .w-24.rounded-full
               %img{ src: place.photo_url }
+
+  - if current_user.present?
+    = link_to current_user.x_share_url, class: 'text-center mt-24 w-100' do
+      .flex.items-center.justify-center
+        .avatar
+          .w-8.rounded-full
+            = image_tag 'logo-black.png'
+        %span にシェア

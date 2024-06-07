@@ -1,4 +1,5 @@
 class Users::VisitedPlacesController < Users::ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index]
 
   def index
     @places = current_user.places.only_today.default_order
