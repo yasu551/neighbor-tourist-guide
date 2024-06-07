@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import GoogleMapController from "./google_map_controller"
 application.register("google-map", GoogleMapController)
+
+import VoicevoxController from "./voicevox_controller"
+application.register("voicevox", VoicevoxController)

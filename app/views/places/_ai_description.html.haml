@@ -1,2 +1,4 @@
-%p{ id: "ai-description-#{place.id}" }
-  = place.ai_description
+%div{ data: { controller: 'voicevox' } }
+  %p{ id: "ai-description-#{place.id}", data: { 'voicevox-target': 'text' } }
+    = place.ai_description
+  %button.btn.btn-primary{ type: :button, data: { action: 'voicevox#speechText' } } 読み上げ
