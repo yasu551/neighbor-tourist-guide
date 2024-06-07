@@ -280,6 +280,7 @@ DEPENDENCIES
   bootsnap
   cssbundling-rails
   debug
+  faraday
   haml-rails
   jsbundling-rails
   omniauth-google-oauth2

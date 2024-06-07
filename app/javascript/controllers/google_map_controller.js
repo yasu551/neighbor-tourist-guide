@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { Loader } from "@googlemaps/js-api-loader";
+import { get } from '@rails/request.js'
 
 // Connects to data-controller="google-map"
 export default class extends Controller {
@@ -49,6 +50,11 @@ export default class extends Controller {
           position: { lat: place.location.latitude, lng: place.location.longitude },
           title: place.displayName.text,
         });
+        advancedMarkerElement.addListener('click', (event) => {
+          console.log(place);
+          const response = get(`http://localhost:3000/places/${place.id}`);
+          console.log(response);
+        })
       }
     });
   }
@@ -58,7 +64,7 @@ export default class extends Controller {
     const headers = {
       'Content-Type': 'application/json',
       'X-Goog-Api-Key': this.apiKeyValue,
-      'X-Goog-FieldMask': 'places.id,places.location,places.displayName',
+      'X-Goog-FieldMask': 'places.id,places.location,places.displayName,places.editorialSummary',
     }
     const method = 'POST';
     const data =
