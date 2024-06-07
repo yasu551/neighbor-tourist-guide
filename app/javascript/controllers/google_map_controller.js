@@ -1,5 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import { Loader } from "@googlemaps/js-api-loader";
+import { renderStreamMessage } from '@hotwired/turbo'
 import { get } from '@rails/request.js'
 
 // Connects to data-controller="google-map"
@@ -51,9 +52,12 @@ export default class extends Controller {
           title: place.displayName.text,
         });
         advancedMarkerElement.addListener('click', (event) => {
-          console.log(place);
           const response = get(`http://localhost:3000/places/${place.id}`);
-          console.log(response);
+          get(`http://localhost:3000/places/${place.id}`, {
+            headers: {
+              Accept: 'text/vnd.turbo-stream.html'
+            }
+          }).then(response => renderStreamMessage(response.data))
         })
       }
     });

@@ -1,0 +1,8 @@
+= turbo_stream.update 'place-info' do
+  .card
+    %figure
+      %img{ src: @place.photo_url }
+    .card-body
+      %h2.card-title= @place.name
+      %p= @place.description
+      %p= @place.ai_description
