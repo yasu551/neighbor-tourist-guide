@@ -12,6 +12,7 @@ gem "redis"
 gem "bootsnap", require: false
 
 gem 'haml-rails'
+gem 'faraday'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
