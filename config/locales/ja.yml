@@ -1,6 +1,14 @@
 ---
 ja:
   activerecord:
+    model:
+      user: ユーザー
+      diary: 日記
+    attributes:
+      diary:
+        title: タイトル
+        content: 日記の内容
+        recorded_on: 記録する日
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

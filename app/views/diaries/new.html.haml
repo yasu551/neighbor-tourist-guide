@@ -1,0 +1,5 @@
+.diaries__form.w-96.mx-auto
+  = simple_form_for @diary, html: { class: 'form-control' } do |f|
+    = f.input :title, input_html: { class: 'input input-bordered w-full' }, wrapper: false, label_html: { class: 'label' }
+    = f.input :recorded_on, html5: true, input_html: { value: Date.current, class: 'input input-bordered w-full mb-5', type: 'date' }, wrapper: false, label_html: { class: 'label' }
+    = f.button :submit, class: 'btn btn-primary'
