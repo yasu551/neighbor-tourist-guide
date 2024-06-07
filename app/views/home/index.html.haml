@@ -1,5 +1,6 @@
-.flex
+.flex.relative
   = turbo_frame_tag 'place-info', class: 'w-[600px]'
   .flex-1{ class: 'h-[1000px] w-[500px]', data: { controller: 'google-map',
                                                    google_map_api_key_value: Rails.application.credentials.google.api_key,
                                                    google_map_map_id_value: Rails.application.credentials.google.map_id } }
+  = image_tag 'zunda.png', class: 'absolute w-[400px] end-0'
