@@ -1,2 +1,12 @@
 .navbar.bg-base-100
-  = link_to '旅行のオトモ', root_path, class: 'btn btn-ghost text-xl'
+  .flex-1
+    = link_to '旅行のオトモ', root_path, class: 'btn btn-ghost text-xl'
+  .flex-none.gap-2
+  - if current_user
+    .menu.menu-sm.btn.mx-1= link_to "ログアウト", log_out_path, method: :delete
+    .menu.menu-sm.btn
+      = image_tag current_user.image, class: 'w-10 rounded-full'
+      #{current_user.name}さん
+  - else
+    = button_to "/auth/google_oauth2", method: :post, data: { turbo: false }, class: 'menu menu-sm' do
+      = image_tag "google_auth.svg"
