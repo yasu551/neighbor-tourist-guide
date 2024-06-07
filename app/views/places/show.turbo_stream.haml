@@ -1,10 +1,10 @@
 = turbo_stream.update 'place-info' do
   = turbo_stream_from dom_id(@place)
-  .card
+  .card.bg-base-100
     %figure
       %img{ src: @place.photo_url }
     .card-body
-      .flex.justify-content-between.align-items-center
+      .flex.justify-between.align-center
         %h2.card-title= @place.name
         - if current_user.present? && !current_user.places.where(id: @place).exists?
           = button_to '観光した！', user_visited_places_path(current_user), params: { id: @place.id },

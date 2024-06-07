@@ -1,4 +1,9 @@
-%div{ data: { controller: 'voicevox' } }
-  %p{ id: "ai-description-#{place.id}", data: { 'voicevox-target': 'text' } }
-    = place.ai_description
-  %button.btn.btn-primary{ type: :button, data: { action: 'voicevox#speechText' } } 読み上げ
+%div{ data: { controller: 'voicevox' }, id: "ai-description-#{place.id}" }
+  - if place.ai_description.present?
+    .chat.chat-start
+      .chat-image.avator
+        .w-10.rounded-full{ class: 'w-[200px]'}
+          = image_tag 'zunda-icon.png'
+      .chat-bubble{ data: { 'voicevox-target': 'text' } }= place.ai_description
+    %button.btn.btn-primary{ type: :button, data: { action: 'voicevox#speechText' } } 説明してもらう
+
