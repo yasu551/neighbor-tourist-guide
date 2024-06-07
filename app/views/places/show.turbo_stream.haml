@@ -4,7 +4,7 @@
     %figure
       %img{ src: @place.photo_url }
     .card-body
-      .flex.justify-between.align-center
+      .flex.justify-between.items-center
         %h2.card-title= @place.name
         - if current_user.present? && !current_user.places.where(id: @place).exists?
           = button_to '観光した！', user_visited_places_path(current_user), params: { id: @place.id },
