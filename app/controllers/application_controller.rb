@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
     session.delete(:user_id)
     @current_user = nil
   end
+
+  def authenticate_user!
+    redirect_to root_path if current_user.blank?
+  end
 end

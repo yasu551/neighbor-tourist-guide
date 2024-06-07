@@ -12,10 +12,6 @@ class Place < ApplicationRecord
     end
   end
 
-  def to_param
-    uuid
-  end
-
   def update_ai_description!
     client = OpenAI::Client.new
     messages = [
