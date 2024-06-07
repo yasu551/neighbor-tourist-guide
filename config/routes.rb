@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :places, param: :uuid
   resources :users, only: [] do
     scope module: :users do
-      resources :visited_places, only: %i[create]
+      resources :visited_places, only: %i[index create]
     end
   end
   root 'home#index'

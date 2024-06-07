@@ -1,4 +1,7 @@
 class Place < ApplicationRecord
+  scope :default_order, -> { order(id: :desc) }
+  scope :only_today, -> { where(created_at: Time.current.beginning_of_day..Time.current.end_of_day) }
+
   after_create_commit do
     GenerateAiDescriptionOnPlaceJob.perform_later(place_id: id)
   end
