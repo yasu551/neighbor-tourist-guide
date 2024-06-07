@@ -22,16 +22,4 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_07_021058) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "places", force: :cascade do |t|
-    t.string "uuid", null: false
-    t.string "name", null: false
-    t.string "description", default: "", null: false
-    t.float "latitude", null: false
-    t.float "longitude", null: false
-    t.string "photo_url", null: false
-    t.string "ai_description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
