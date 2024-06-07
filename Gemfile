@@ -15,6 +15,8 @@ gem 'haml-rails'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'faraday'
+gem 'good_job'
+gem 'ruby-openai'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
